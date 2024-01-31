@@ -4,6 +4,9 @@ import torch
 from .auction import auction_algorithm
 
 
+__all__ = ['TransportLpLoss']
+
+
 class TransportLpLoss(torch.nn.Module):
     """
     PyTorch module for computing the Transport-Lp loss between two sets of

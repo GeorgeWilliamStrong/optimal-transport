@@ -2,6 +2,9 @@ import numpy as np
 from numba import jit, prange
 
 
+__all__ = ['cost_matrix', 'auction_algorithm']
+
+
 @jit(nopython=True)
 def cost_matrix(a, b, p=2):
     """
