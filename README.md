@@ -24,6 +24,10 @@ subject to the following constraints:
 \gamma(x, y)\geq0.
 ```
 
+FIX MATH DEFINITION - USE MORE GENERAL FORM FROM PAPER.
+
+TLP DISTANCE IS EQUIVALENT TO P-WASSERSTEIN DISTANCE OF THE GRAPH OF ALPHA AND BETA. CONSIDERING A NUMERICAL IMPLEMENTATION, THE GRAPH OF A DISCRETE ONE-DIMENSIONAL SIGNAL SUCH AS TIME SERIES DATA, WOULD BE A CLOUD OF EQUAL MASS POINTS DEFINED WITHIN THE TIME AND AMPLITUDE DIMENSION. ASSUMING EACH MEASURE (ALPHA AND BETA) CONTAIN THE SAME NUMBER OF EQUAL MASS POINTS, BIRKHOFF'S THEOREM STATES that the optimal solution simplifies to a permutation matrix, where every entry is either a 1 or 0. Finding the optimal permutations amounts to solving a linear sum assignment problem.
+
 As the transformed predicted and observed data traces, $\mathcal{T}(G(\mathbf{m})_{s,r})$ and $\mathcal{T}(\mathbf{d}_{s,r})$, contain the same number of equal-mass points, Birkhoff's theorem \citep{birkhoff1946tres} states that the optimal solution for Kantorovich's problem \eqref{eqn:Kantorovich's problem} simplifies to a permutation matrix, $T_{\sigma}$, where every entry in $T_{\sigma}$ is either a 1 or 0 \citep{peyre2019computational}. $T_{\sigma}$ represents a bijection between points $\mathcal{T}(G(\mathbf{m})_{s,r})$ and $\mathcal{T}(\mathbf{d}_{s,r})$, and finding the optimal permutations $\sigma$ amounts to solving a linear sum assignment problem
 
 ## Quickstart
