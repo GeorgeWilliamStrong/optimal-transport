@@ -2,7 +2,7 @@
 
 PyTorch implementation of the transportation $L_{p}$ distance ($TL_{p}$) for signal analysis with an implementation of the auction algorithm for efficiently solving the Monge optimal assignment problem.
 
-In contrast to the p-Wasserstein metric which is used to compare probability distributions (e.g. non-negative normalised data), the $TL_{p}$ distance can be used more generally to compare *any* signals of interest. This includes signed and unnormalised data such as images and audio.
+In contrast to the p-Wasserstein metric which is used to compare probability distributions (e.g. non-negative normalised data), the $TL_{p}$ distance can be used more generally to provide a global comparison between *any* signals of interest. This includes signed and unnormalised data such as images and audio.
 
 The transportation $L_{p}$ distance is defined as follows:
 
