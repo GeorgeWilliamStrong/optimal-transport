@@ -16,11 +16,9 @@ where $W_{p}$ represents the $p$-Wasserstein metric and ($\hat{\alpha}, \hat{\be
 
 ```math
 \int_{\Omega}\gamma(x, y) \textup{d}y=\hat{\alpha}(x);
-```
-```math
+
 \int_{\Omega}\gamma(x, y) \textup{d}x=\hat{\beta}(y);
-```
-```math
+
 \gamma(x, y)\geq 0.
 ```
 
@@ -29,14 +27,20 @@ The coupling or transportation plan, $\gamma(x, y)$, represents the amount of ma
 From a numerical perspective it is advantageous to consider the discrete version of this problem:
 
 ```math
-TL_{p}(\alpha, \beta) = \left ( \underset{T}{\textup{min}}\sum_{i=1}^{n}\sum_{j=1}^{m}\gamma_{i, j}|| x_{i} - y_{j} ||_{p}^{p} \right )^{\frac{1}{p}}
+TL_{p}(\alpha, \beta) = \left ( \underset{T}{\textup{min}}\sum_{i=1}^{n}\sum_{j=1}^{m}\gamma_{i, j}|| x_{i} - y_{j} ||_{p}^{p} \right )^{\frac{1}{p}},
 ```
 
+subject to the corresponding discrete constraints:
 
+```math
+\sum_{j=1}^{m}\gamma_{i, j} = \hat{\alpha}_{i};
 
-CONSIDERING A NUMERICAL IMPLEMENTATION, THE GRAPH OF A DISCRETE ONE-DIMENSIONAL SIGNAL SUCH AS TIME SERIES DATA, WOULD BE A CLOUD OF EQUAL MASS POINTS DEFINED WITHIN THE TIME AND AMPLITUDE DIMENSION. ASSUMING EACH MEASURE (ALPHA AND BETA) CONTAIN THE SAME NUMBER OF EQUAL MASS POINTS, BIRKHOFF'S THEOREM STATES that the optimal solution simplifies to a permutation matrix, where every entry is either a 1 or 0. Finding the optimal permutations amounts to solving a linear sum assignment problem.
+\sum_{i=1}^{n}\gamma_{i, j} = \hat{\beta}_{j};
 
-As the transformed predicted and observed data traces, $\mathcal{T}(G(\mathbf{m})_{s,r})$ and $\mathcal{T}(\mathbf{d}_{s,r})$, contain the same number of equal-mass points, Birkhoff's theorem \citep{birkhoff1946tres} states that the optimal solution for Kantorovich's problem \eqref{eqn:Kantorovich's problem} simplifies to a permutation matrix, $T_{\sigma}$, where every entry in $T_{\sigma}$ is either a 1 or 0 \citep{peyre2019computational}. $T_{\sigma}$ represents a bijection between points $\mathcal{T}(G(\mathbf{m})_{s,r})$ and $\mathcal{T}(\mathbf{d}_{s,r})$, and finding the optimal permutations $\sigma$ amounts to solving a linear sum assignment problem
+\gamma_{i,j}\geq 0.
+```
+
+Under this formulation, the graph of a discrete one-dimensional signal such as a time series is defined as a two-dimensional cloud of unit-mass points defined within the time and amplitude dimension. Assuming each measure being compared ($\alpha$ and $\beta$) have the same number of equal-mass points, Birkhoff's theorem [3] states that the optimal solution for $\gamma$ simplifies to a permutation matrix, where every entry is either a 1 or 0. Finding optimal permutations amounts to solving a linear sum assignment problem.
 
 ## Quickstart
 
@@ -64,3 +68,6 @@ During `forward()`, clones of the `input` and `target` variables are detached fr
 [[**1**]](https://arxiv.org/abs/1609.08669) Thorpe, M., Park, S., Kolouri, S., Rohde, G. K. & Slepcev, D. (2017), ‘A transportation $L_{p}$ distance for signal analysis’, *Journal of mathematical imaging and vision* **59**(2), 187–210.
 
 [[**2**]](https://link.springer.com/article/10.1007/BF02186476) Bertsekas, D. P. (1988), ‘The auction algorithm: A distributed relaxation method for the assignment problem’, *Annals of operations research* **14**(1), 105–123.
+
+[[**3**]](https://cir.nii.ac.jp/crid/1570572699525842816) Birkhoff, G. (1946), ‘Tres observaciones sobre el algebra lineal’, Univ. Nac. Tucuman, Ser. A 5, 147–154.
+
