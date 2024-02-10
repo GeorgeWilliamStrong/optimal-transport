@@ -9,7 +9,7 @@ In contrast to conventional optimal transport distances used to compare probabil
 The $TL_{p}$ distance between two signals, $\alpha$ and $\beta$, is defined as follows:
 
 ```math
-TL_{p}(\alpha, \beta) = W_{p}(\hat{\alpha}, \hat{\beta}) = \underset{\gamma\in\prod(\hat{\alpha}, \hat{\beta})}{\textup{min}}\int_{\Omega \times \Omega } || x - y ||_{p}^{p} \textup{d}\gamma(x, y)
+TL_{p}(\alpha, \beta) = W_{p}(\hat{\alpha}, \hat{\beta}) = \left (  \underset{\gamma\in\prod(\hat{\alpha}, \hat{\beta})}{\textup{min}}\int_{\Omega \times \Omega } || x - y ||_{p}^{p} \textup{d}\gamma(x, y) \right )^{\frac{1}{p}}
 ```
 
 where $W_{p}$ represents the $p$-Wasserstein metric and ($\hat{\alpha}, \hat{\beta}$) represent the graphs of the input signals. The minimum is taken over probability measures $\gamma$ on $\Omega \times \Omega$ subject to the following constraints:
@@ -28,6 +28,9 @@ The coupling or transportation plan, $\gamma(x, y)$, represents the amount of ma
 
 From a numerical perspective it is advantageous to consider the discrete version of this problem:
 
+```math
+TL_{p}(\alpha, \beta) = \left ( \underset{T}{\textup{min}}\sum_{i=1}^{n}\sum_{j=1}^{m}\gamma_{i, j}|| x_{i} - y_{j} ||_{p}^{p} \right )^{\frac{1}{p}}
+```
 
 
 
