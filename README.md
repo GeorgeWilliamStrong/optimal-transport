@@ -30,7 +30,7 @@ From a numerical perspective it is advantageous to consider the discrete version
 TL_{p}(\alpha, \beta) = \left ( \underset{T}{\textup{min}}\sum_{i=1}^{n}\sum_{j=1}^{m}\gamma_{i, j}|| x_{i} - y_{j} ||_{p}^{p} \right )^{\frac{1}{p}},
 ```
 
-subject to the corresponding discrete constraints:
+subject to the constraints:
 
 ```math
 \sum_{j=1}^{m}\gamma_{i, j} = \hat{\alpha}_{i};
@@ -40,7 +40,28 @@ subject to the corresponding discrete constraints:
 \gamma_{i,j}\geq 0.
 ```
 
-Under this formulation, the graph of a discrete one-dimensional signal such as a time series is defined as a two-dimensional cloud of unit-mass points defined within the time and amplitude dimension. Assuming each measure being compared ($\alpha$ and $\beta$) have the same number of equal-mass points, Birkhoff's theorem [3] states that the optimal solution for $\gamma$ simplifies to a permutation matrix, where every entry is either a 1 or 0. Finding optimal permutations amounts to solving a linear sum assignment problem.
+Under this formulation, the graph of a discrete one-dimensional signal such as a time series corresponds to a two-dimensional cloud of unit-mass points defined within the time and amplitude dimension. Assuming each measure being compared ($\hat{\alpha}$ and $\hat{\beta}$) have the same number of equal-mass points, Birkhoff's theorem [3] states that the optimal solution for $\gamma$ simplifies to a permutation matrix $\gamma^{\sigma}$, where every entry is either a 1 or 0. This can be further simplified by using $\sigma$ to represent a bijective function between $\alpha$ and $\beta$, and finding optimal permutations then amounts to solving the following linear sum assignment problem:
+
+```math
+TL_{p}(\alpha, \beta) = \left ( \underset{\sigma}{\textup{min}}\frac{1}{n}\sum_{i=1}^{n}||\hat{\alpha}_{i}-\hat{\beta}_{\sigma(i)}||_{p}^{p} \right ) ^{\frac{1}{p}}
+```
+
+subject to the constraints:
+
+```math
+\sum_{j=1}^{n}\gamma^{\sigma}_{i, j} = 1;
+
+\sum_{i=1}^{n}\gamma^{\sigma}_{i, j} = 1;
+
+\gamma^{\sigma}_{i,j}\geq 0.
+```
+
+Efficient numerical algorithms exist for solving such problems, such as the auction algorithm [2] used in this implementation.
+
+
+THIS IMPLEMENTATION IS GENERAL, AND NO ASSUMPTION IS MADE ABOUT THE DIMENSIONALITY OF THE INPUT SIGNALS E.G. COULD BE 1D TIMES SERIES OR 3D IMAGE DATA.
+
+HYPERPARAMETER - GRAPH TRANSFORM SCALING - THIS SHOULD BE IN NOTEBOOK TUTORIAL, NOT HERE.
 
 ## Quickstart
 
