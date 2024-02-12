@@ -2,7 +2,7 @@
 
 PyTorch implementation of the transportation $L_{p}$ distance ($TL_{p}$) for signal analysis [1] with an implementation of the auction algorithm [2] for efficiently solving the Monge optimal assignment problem.
 
-Importantly, this implementation and formulation is general, and no assumption is made about the dimensionality of the input signals. The `TransportLpLoss()` criterion can be equivalently applied to 1D time series data, 3D image data or point cloud data (where the graph transform is not required). 
+This implementation and formulation is general, and no assumption is made about the dimensionality of the input signals. The `TransportLpLoss()` criterion can be equivalently applied to 1D time series data, 3D image data or point cloud data (where the graph transform is not required). 
 
 ## Formulation
 
