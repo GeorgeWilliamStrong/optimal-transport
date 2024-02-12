@@ -2,7 +2,28 @@
 
 PyTorch implementation of the transportation $L_{p}$ distance ($TL_{p}$) for signal analysis [[1]](https://arxiv.org/abs/1609.08669) with an implementation of the auction algorithm [[2]](https://link.springer.com/article/10.1007/BF02186476) for efficiently solving the Monge optimal assignment problem.
 
-This implementation and formulation is general, and no assumption is made about the dimensionality of the input signals. The `TransportLpLoss()` criterion can be equivalently applied to 1D time series data, 3D image data or point cloud data (where the graph transform is not required). 
+This implementation and formulation is general, and no assumption is made about the dimensionality of the input signals. The `TransportLpLoss()` criterion can be equivalently applied to 1D time series data, 3D image data or point cloud data (where the graph transform is not required).
+
+## Quickstart
+
+```sh
+git clone https://github.com/GeorgeWilliamStrong/optimal-transport
+cd optimal-transport
+pip install -e .
+```
+
+## Usage
+
+The $TL_{p}$ distance has been implemented as a PyTorch module. It can be used to provide a global OT-based comparison between n-dimensional signals.
+
+```python
+from optimal_transport import TransportLpLoss
+
+criterion = TransportLpLoss()
+loss = criterion(input, target)
+```
+
+During `forward()`, clones of the `input` and `target` variables are detached from the computation graph. Their graph-space transform is taken, and the optimal assignment problem between the resultant sets is solved. The optimal assignments are then used to formulate the transportation $L_{p}$ distance between the `input` and `target` variables that exist *within the computation graph* such that the module is differentiable through `loss.backward()`.
 
 ## Formulation
 
@@ -59,27 +80,6 @@ subject to the constraints:
 ```
 
 Efficient numerical algorithms exist for solving such problems, such as the auction algorithm [[2]](https://link.springer.com/article/10.1007/BF02186476) used in this implementation.
-
-## Quickstart
-
-```sh
-git clone https://github.com/GeorgeWilliamStrong/optimal-transport
-cd optimal-transport
-pip install -e .
-```
-
-## Usage
-
-The $TL_{p}$ distance has been implemented as a PyTorch module. It can be used to provide a global OT-based comparison between n-dimensional signals.
-
-```python
-from optimal_transport import TransportLpLoss
-
-criterion = TransportLpLoss()
-loss = criterion(input, target)
-```
-
-During `forward()`, clones of the `input` and `target` variables are detached from the computation graph. Their graph-space transform is taken, and the optimal assignment problem between the resultant sets is solved. The optimal assignments are then used to formulate the transportation $L_{p}$ distance between the `input` and `target` variables that exist *within the computation graph* such that the module is differentiable through `loss.backward()`.
 
 ## References
 
