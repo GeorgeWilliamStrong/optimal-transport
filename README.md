@@ -1,6 +1,6 @@
 # Optimal Transport for Signal Analysis
 
-PyTorch implementation of the transportation $L_{p}$ distance ($TL_{p}$) for signal analysis [1] with an implementation of the auction algorithm [2] for efficiently solving the Monge optimal assignment problem.
+PyTorch implementation of the transportation $L_{p}$ distance ($TL_{p}$) for signal analysis [[1]](https://arxiv.org/abs/1609.08669) with an implementation of the auction algorithm [[2]](https://link.springer.com/article/10.1007/BF02186476) for efficiently solving the Monge optimal assignment problem.
 
 This implementation and formulation is general, and no assumption is made about the dimensionality of the input signals. The `TransportLpLoss()` criterion can be equivalently applied to 1D time series data, 3D image data or point cloud data (where the graph transform is not required). 
 
@@ -42,7 +42,7 @@ subject to the constraints:
 \gamma_{i,j}\geq 0.
 ```
 
-Under this formulation, the graph of a discrete one-dimensional signal such as a time series corresponds to a two-dimensional cloud of unit-mass points defined within the time and amplitude dimension. Assuming each measure being compared ($\hat{\alpha}$ and $\hat{\beta}$) have the same number of equal-mass points, Birkhoff's theorem [3] states that the optimal solution for $\gamma$ simplifies to a permutation matrix $\gamma^{\sigma}$, where every entry is either a 1 or 0. This can be further simplified by using $\sigma$ to represent a bijective function between $\alpha$ and $\beta$, and finding optimal permutations then amounts to solving the following linear sum assignment problem:
+Under this formulation, the graph of a discrete one-dimensional signal such as a time series corresponds to a two-dimensional cloud of unit-mass points defined within the time and amplitude dimension. Assuming each measure being compared ($\hat{\alpha}$ and $\hat{\beta}$) have the same number of equal-mass points, Birkhoff's theorem [[3]](https://cir.nii.ac.jp/crid/1570572699525842816) states that the optimal solution for $\gamma$ simplifies to a permutation matrix $\gamma^{\sigma}$, where every entry is either a 1 or 0. This can be further simplified by using $\sigma$ to represent a bijective function between $\alpha$ and $\beta$, and finding optimal permutations then amounts to solving the following linear sum assignment problem:
 
 ```math
 TL_{p}(\alpha, \beta) = \left ( \underset{\sigma}{\textup{min}}\frac{1}{n}\sum_{i=1}^{n}||\hat{\alpha}_{i}-\hat{\beta}_{\sigma(i)}||_{p}^{p} \right ) ^{\frac{1}{p}}
@@ -58,7 +58,7 @@ subject to the constraints:
 \gamma^{\sigma}_{i,j}\geq 0.
 ```
 
-Efficient numerical algorithms exist for solving such problems, such as the auction algorithm [2] used in this implementation.
+Efficient numerical algorithms exist for solving such problems, such as the auction algorithm [[2]](https://link.springer.com/article/10.1007/BF02186476) used in this implementation.
 
 ## Quickstart
 
