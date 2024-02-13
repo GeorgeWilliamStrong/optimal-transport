@@ -40,6 +40,7 @@ def cloud_plot(a, b=None, assignments=None, **kwargs):
     alpha = kwargs.pop('alpha', 0.8)
     size = kwargs.pop('size', (5, 5))
     t_plan = kwargs.pop('t_plan', None)
+    a_linewidths = kwargs.pop('a_linewidths', 1)
 
     plt.figure(figsize=size)
     plt.axis('off')
@@ -62,12 +63,12 @@ def cloud_plot(a, b=None, assignments=None, **kwargs):
         plt.plot(np.stack((a[assignments, 0], b[:, 0])),
                  np.stack((a[assignments, 1], b[:, 1])),
                  color='k',
-                 linewidth=1)
+                 linewidth=a_linewidths)
     elif t_plan is not None:
         i_ind, j_ind = np.nonzero(t_plan.value > 1e-5)
         for k in range(len(i_ind)):
             plt.plot(np.stack((a[i_ind[k], 0], b[j_ind[k], 0])),
                      np.stack((a[i_ind[k], 1], b[j_ind[k], 1])),
                      color='k',
-                     linewidth=1)
+                     linewidth=a_linewidths)
     plt.show()
