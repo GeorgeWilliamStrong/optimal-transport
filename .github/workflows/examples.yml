@@ -29,8 +29,8 @@ jobs:
         cd optimal-transport
         pip install -e .
 
-    - name: Convert optimal assignment notebook to Python script
-      run: jupyter nbconvert --to script examples/optimal_assignment_problem.ipynb
-
-    - name: Run optimal assignment script
-      run: python optimal_assignment_problem.py
+    - name: Run optimal assignment notebook
+      shell: bash -l {0}
+      run: |
+        cd optimal-transport/examples/
+        py.test -p no:python --nbval-lax
