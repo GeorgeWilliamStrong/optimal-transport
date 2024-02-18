@@ -3,4 +3,5 @@ matplotlib>=3.8.2
 numba>=0.59.0
 scipy>=1.11.4
 notebook>=7.1.0
+pytest
 torch
